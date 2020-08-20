@@ -1,0 +1,153 @@
+<div class="form-popup" id="myForm">
+  <div class="jumbotron col-md-6 mx-auto bg-secondary">
+    <div class="submit-form">
+      <div *ngIf="!submitted">
+        <form ngNativeValidate (ngSubmit)="createAndUpdate(us.currentAppointment)">
+          <div class="row">
+            <div class="col-md-6 form-group">
+              <label for="firstname">First Name :</label>
+              <input type="text" class="form-control" id="firstname" pattern="[A-Za-z]+" name="firstname"
+                [(ngModel)]="us.currentAppointment.firstname" required />
+            </div>
+            <div class="col-md-6 form-group">
+              <label for="lastname">Last Name :</label>
+              <input type="text" class="form-control" id="lastname" required pattern="[A-Za-z]+" name="lastname"
+                [(ngModel)]="us.currentAppointment.lastname" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="age">Age :</label>
+            <input type="number" class="form-control" id="age" min="18" max="60" required name="age"
+              [(ngModel)]="us.currentAppointment.age" />
+          </div>
+          <div class="form-group">
+            <label for="phonenumber">Phone Number :</label>
+            <input type="tel" class="form-control" id="phonenumber" pattern="[0-9]{10}" required name="phonenumber"
+              [(ngModel)]="us.currentAppointment.phonenumber" />
+          </div>
+          <div class="form-group">
+            <label for="email">Email :</label>
+            <input type="email" class="form-control" id="email" required ngModel name="email"
+              [(ngModel)]="us.currentAppointment.email" />
+          </div>
+          <fieldset class="border p-2">
+            <legend class="w-auto">Address</legend>
+            <div class="form-group">
+              <label for="streetaddress">Street Address :</label>
+              <input type="text" class="form-control" id="streetaddress" required ngModel name="streetaddress"
+                [(ngModel)]="us.currentAppointment.streetaddress" />
+            </div>
+            <div class="form-group">
+              <label for="city">City :</label>
+              <input type="text" class="form-control" id="city" required ngModel name="city"
+                [(ngModel)]="us.currentAppointment.city" />
+            </div>
+            <div class="form-group">
+              <label for="state">State :</label>
+              <input type="text" class="form-control" id="state" required ngModel name="state"
+                [(ngModel)]="us.currentAppointment.state" />
+            </div>
+            <div class="form-group">
+              <label for="country">Country :</label>
+              <input type="text" class="form-control" id="country" required ngModel name="country"
+                [(ngModel)]="us.currentAppointment.country" />
+            </div>
+            <div class="form-group">
+              <label for="pincode">Pincode :</label>
+              <input type="tel" class="form-control" id="pincode" required pattern="[0-9]{6}" ngModel name="pincode"
+                [(ngModel)]="us.currentAppointment.pincode" />
+            </div>
+          </fieldset>
+          <div class="form-group">
+            <label for="trainerpreference">Trainer Preference :</label>
+            <select name="trainerpreference" id="trainerpreference" class="form-control" required
+              [(ngModel)]="us.currentAppointment.trainerpreference">
+
+              <option value="0" selected>--Select Preference--</option>
+              <option value="Male">Male</option>
+              <option value="Female">Female</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Physiotherapist :</label>&nbsp;
+            <input type="radio" id="Yes" name="physiotherapist" value="Yes"
+              [(ngModel)]="us.currentAppointment.physiotherapist">
+            <label for="male">Yes</label>&nbsp;
+            <input type="radio" id="No" name="physiotherapist" value="No"
+              [(ngModel)]="us.currentAppointment.physiotherapist">
+            <label for="female">No</label><br>
+          </div>
+          <div class="form-group">
+            <label for="packages">Packages :</label>
+            <select name="packages" id="packages" class="form-control" required (change)="packageEvent($event)"
+              [(ngModel)]="us.currentAppointment.packages">
+
+              <option value="0" selected>--Select Package--</option>
+              <option value=1000>One time assessment (INR 1000)</option>
+              <option value=2800>4 weekly session (INR 700/session)</option>
+              <option value=6000>12 weekly session (INR 500/session)</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="inr">Inr :</label>
+            <input class="form-control" id="inr" ngModel name="inr" [(ngModel)]="us.currentAppointment.inr" required />
+          </div>
+          <div class="form-group">
+            <label for="date">Appointment</label>
+            <input type="date" id="date" name="date" class="form-control" required
+              [(ngModel)]="us.currentAppointment.date">
+          </div>
+          <input type="submit" class="btn btn-success btn-block" value="Submit" />
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="jumbotron">
+  <table class="table table-hover table-responsive" id="list-table">
+
+    <tr>
+      <th class="h1">Sl NO</th>
+      <th class="h2">Name</th>
+      <th class="h3">Address</th>
+      <th class="h4">City</th>
+      <th class="h5">Package</th>
+      <th class="h6">Trainer Preference</th>
+      <th class="h7">Phone</th>
+    </tr>
+
+    <tr *ngFor="let appoint of list">
+      <td>
+        {{appoint.id}}
+      </td>
+      <td>
+        {{appoint.firstname}}
+      </td>
+      <td>
+        {{appoint.streetaddress}}
+      </td>
+      <td>
+        {{appoint.city}}
+      </td>
+      <td>
+        {{appoint.packages}}
+      </td>
+
+      <td>
+        {{appoint.trainerpreference}}
+      </td>
+      <td>
+        {{appoint.phonenumber}}
+      </td>
+
+      <td>
+        <a (click)="deleteAppointment(appoint.id)" class="btn text-danger"><i class="fa fa-trash"></i></a>
+      </td>
+      <td>
+        <a (click)="editForm(appoint)" class="btn"><i class="fa fa-edit"></i></a>
+      </td>
+    </tr>
+  </table>
+</div>

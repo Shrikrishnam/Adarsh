@@ -1,0 +1,48 @@
+{
+  "allfriends": [
+    {
+      "firstname": "Adarsh",
+      "lastname": "Basantwani",
+      "age": 22,
+      "phonenumber": "9405322904",
+      "email": "test@test.com",
+      "streetaddress": "test",
+      "city": "test",
+      "state": "test",
+      "country": "India",
+      "pincode": "560058",
+      "trainerpreference": "Female",
+      "physiotherapist": "Yes",
+      "packages": "2800",
+      "inr": "2800",
+      "date": "2020-08-20",
+      "id": 1
+    }
+  ],
+  "contacts": [
+    {
+      "firstname": "Test",
+      "lastname": "Test",
+      "phonenumber": "9988776655",
+      "email": "test@test.com",
+      "message": "test",
+      "id": 1
+    },
+    {
+      "firstname": "Adarsh",
+      "lastname": "Basantwani",
+      "phonenumber": "9405322904",
+      "email": "test@test.com",
+      "message": "Test Message",
+      "id": 4
+    },
+    {
+      "firstname": "Adarsh",
+      "lastname": "Basantwani",
+      "phonenumber": "9405322904",
+      "email": "test@test.com",
+      "message": "New",
+      "id": 5
+    }
+  ]
+}

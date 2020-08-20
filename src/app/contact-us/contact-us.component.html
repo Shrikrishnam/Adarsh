@@ -1,0 +1,57 @@
+<div class="jumbotron col-md-6 mx-auto bg-secondary">
+  <form [formGroup]="contactForm" (ngSubmit)="onSubmit()" style="padding: 50px;" ngNativeValidate>
+    <div class="row">
+      <div class="col-md-6 form-group">
+        <input placeholder="First Name" class="form-control" formControlName="firstname" pattern="[A-Za-z]+" required>
+        <small class="form-text text-muted"
+          *ngIf="contactForm.controls.firstname.touched && contactForm.controls.firstname.errors?.required">
+          Please enter first name.!
+        </small>
+      </div>
+      <div class="col-md-6 form-group">
+        <input placeholder="Last Name" class="form-control" formControlName="lastname" pattern="[A-Za-z]+" required>
+        <small class="form-text text-muted"
+          *ngIf="contactForm.controls.lastname.touched && contactForm.controls.lastname.errors?.required">
+          Please enter last name.!
+        </small>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12 form-group">
+        <input type="email" placeholder="Email" class="form-control" formControlName="email" required>
+        <small class="form-text text-muted"
+          *ngIf="contactForm.controls.email.touched && contactForm.controls.email.errors?.required">
+          Please enter email.!
+        </small>
+        <small class="form-text text-muted"
+          *ngIf="contactForm.controls.email.touched && contactForm.controls.email.errors?.email">
+          Enter the valid email .!
+        </small>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12 form-group">
+        <input type="tel" placeholder="Mobile no." class="form-control" formControlName="phonenumber"
+          pattern="[0-9]{10}" required>
+        <small class="form-text text-muted text-danger"
+          *ngIf="contactForm.controls.phonenumber.touched && contactForm.controls.phonenumber.errors?.required">
+          Please enter phone number.!
+        </small>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12 form-group">
+        <textarea placeholder="Message" class="form-control" row="4" formControlName="message" required></textarea>
+        <small class="form-text text-muted"
+          *ngIf="contactForm.controls.message.touched && contactForm.controls.message.errors?.required">
+          Please enter message.!
+        </small>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6 form-group mx-auto">
+        <button class="btn btn-success btn-md btn-block">SAVE</button>
+      </div>
+    </div>
+  </form>
+</div>
